@@ -3,3 +3,4 @@ requests
 mysqlclient
 SQLAlchemy
 Flask-SQLAlchemy
+pandas
