@@ -1,12 +1,13 @@
 import requests
 import pandas as pd
+import os
+from dotenv import load_dotenv
+
+load_dotenv('../.env')
 from flask import Flask, jsonify, request, send_file
 from io import BytesIO
 
 app = Flask(__name__)
-
-
-SPRINGER_API_KEY = "4907229a03e875715d1f3b3ee17a9df5"
 
 @app.route('/search', methods=['GET'])
 def search():
@@ -20,7 +21,7 @@ def search():
     # Query parameters
     params = {
         'q': query,
-        'api_key': SPRINGER_API_KEY
+        'api_key': os.getenv('SPRINGER_API_KEY')
     }
 
 
