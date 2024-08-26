@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, make_response
 from utils import search_springer, format_search_results
-from models import db, SearchLog
+from src.models.models import db, SearchLog
 
 search_blueprint = Blueprint('search', __name__)
 

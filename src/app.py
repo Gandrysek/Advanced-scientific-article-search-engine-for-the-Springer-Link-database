@@ -35,7 +35,6 @@ def search():
 
             df = pd.DataFrame.from_records(records)
 
-
             csv_output = BytesIO()
             df.to_csv(csv_output, index=False)
             csv_output.seek(0)
