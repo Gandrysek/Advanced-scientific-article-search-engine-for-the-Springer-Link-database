@@ -19,4 +19,4 @@ else:
     raise Exception("No api key found. Provide one with SPRINGER_API_KEY key in .env at the top of the project")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(ssl_context='adhoc')

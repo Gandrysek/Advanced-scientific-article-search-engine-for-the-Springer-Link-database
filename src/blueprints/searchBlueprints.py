@@ -6,7 +6,7 @@ search_blueprint = Blueprint('search', __name__)
 
 # boolean constraints queries will be build in frontend, general
 # search method can take a single param query and a multiple params query
-# http://127.0.0.1:5000/api/search?query=machine learning&start=2&type=Journal&exclude={"type":"Book"}
+# https://127.0.0.1:5000/api/search?query=machine learning&start=2&type=Journal&exclude={"type":"Book"}
 @search_blueprint.route('/search', methods=['GET'])
 def search():
     query = request.args.get('query')
@@ -33,7 +33,7 @@ def search():
     return jsonify(formatted_results)
 
 # search by keyword
-# http://127.0.0.1:5000/api/search/biology?type=Journal
+# https://127.0.0.1:5000/api/search/biology?type=Journal
 @search_blueprint.route('/search/<keyword>', methods=['GET'])
 def search_by_keyword(keyword):
     start = request.args.get('start', 1)
@@ -58,7 +58,7 @@ def search_by_keyword(keyword):
 
 
 # search by digital object identifier/s, pass as a string separated with ,
-# http://127.0.0.1:5000/api/search/doi?dois=10.1007/978-3-319-07410-8_4,10.1038/s41598-017-17625-2
+# https://127.0.0.1:5000/api/search/doi?dois=10.1007/978-3-319-07410-8_4,10.1038/s41598-017-17625-2
 
 @search_blueprint.route('/search/doi', methods=['GET'])
 def search_by_doi():
@@ -88,7 +88,7 @@ def search_by_doi():
     return jsonify(formatted_results)
 
 # limit to a single International Standard Book Number
-# http://127.0.0.1:5000/api/search/isbn?isbn=978-0-387-79148-7
+# https://127.0.0.1:5000/api/search/isbn?isbn=978-0-387-79148-7
 @search_blueprint.route('/search/isbn', methods=['GET'])
 def search_by_isbn():
     isbn = request.args.get('isbn')
@@ -116,7 +116,7 @@ def search_by_isbn():
 
 
 # limit to a single International Standard Serial Number
-#http://127.0.0.1:5000/api/search/issn?issn=1861-0692
+#https://127.0.0.1:5000/api/search/issn?issn=1861-0692
 @search_blueprint.route('/search/issn', methods=['GET'])
 def search_by_issn():
     issn = request.args.get('issn')
