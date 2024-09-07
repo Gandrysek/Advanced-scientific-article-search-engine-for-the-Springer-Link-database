@@ -1,57 +1,22 @@
-import requests
-import pandas as pd
+
 import os
 from dotenv import load_dotenv
+from blueprints.searchBlueprints import search_blueprint
+from blueprints.exportBlueprints import export_blueprint
+from flask import Flask
 
+# set the current working directory to the app.py for the relative path usage
+os.chdir(os.path.dirname(__file__))
 load_dotenv('../.env')
-from flask import Flask, jsonify, request, send_file
-from io import BytesIO
 
 app = Flask(__name__)
 
-@app.route('/search', methods=['GET'])
-def search():
 
-    query = request.args.get('query', default='machine learning', type=str)
-    export_csv = request.args.get('export_csv', default='false', type=str).lower() == 'true'
-
-
-    base_url = "http://api.springernature.com/meta/v2/json"
-
-    # Query parameters
-    params = {
-        'q': query,
-        'api_key': os.getenv('SPRINGER_API_KEY')
-    }
-
-
-    response = requests.get(base_url, params=params)
-
-
-    if response.status_code == 200:
-        data = response.json()
-        records = data.get('records', [])
-
-        if export_csv:
-
-            df = pd.DataFrame.from_records(records)
-
-            csv_output = BytesIO()
-            df.to_csv(csv_output, index=False)
-            csv_output.seek(0)
-
-            # Return the CSV file
-            return send_file(
-                csv_output,
-                mimetype='text/csv',
-                download_name=f'{query}_results.csv',
-                as_attachment=True
-            )
-
-
-        return jsonify(records)
-    else:
-        return jsonify({"error": "Failed to retrieve data from Springer Link API"}), response.status_code
+if "SPRINGER_API_KEY" in os.environ:
+    app.register_blueprint(search_blueprint, url_prefix='/api')
+    app.register_blueprint(export_blueprint, url_prefix='/api')
+else:
+    raise Exception("No api key found. Provide one with SPRINGER_API_KEY key in .env at the top of the project")
 
 if __name__ == '__main__':
     app.run(debug=True)
