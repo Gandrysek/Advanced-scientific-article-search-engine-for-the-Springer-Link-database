@@ -1,0 +1,7 @@
+Flask~=3.0.3
+requests~=2.30.0
+mysqlclient
+SQLAlchemy
+Flask-SQLAlchemy
+pandas
+python-dotenv~=1.0.1
