@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv('../../.env')
 
 
-def search_springer(query, start=1, year_range=None, literatureType=None, exclude=None):
+def search_springer(query, start=1, datefrom=None, dateto=None, literatureType=None, exclude=None):
     base_url = os.getenv('BASE_URL')
     params = {
         "q": query,
@@ -13,9 +13,9 @@ def search_springer(query, start=1, year_range=None, literatureType=None, exclud
         "api_key": os.getenv('SPRINGER_API_KEY'),
     }
 
-    if year_range:
-        params["date-facet-mode"] = "between"
-        params["date-facet"] = year_range
+    if datefrom and dateto:
+        params["datefrom"] = datefrom
+        params["dateto"] = dateto
 
     if exclude:
         for key, value in exclude.items():
@@ -57,7 +57,7 @@ def is_in_types(value):
     return value in literatureTypeEnum
 
 
-def search_springer_by_keyword(keyword, start=1, year_range=None, literatureType=None, exclude=None):
+def search_springer_by_keyword(keyword, start=1, datefrom=None, dateto=None, literatureType=None, exclude=None):
     base_url = os.getenv('BASE_URL')
     params = {
         "q": "keyword:" + keyword.replace(" ", "%20"),
@@ -65,9 +65,9 @@ def search_springer_by_keyword(keyword, start=1, year_range=None, literatureType
         "api_key": os.getenv('SPRINGER_API_KEY'),
     }
 
-    if year_range:
-        params["date-facet-mode"] = "between"
-        params["date-facet"] = year_range
+    if datefrom and dateto:
+        params["datefrom"] = datefrom
+        params["dateto"] = dateto
 
 
     if exclude:
@@ -88,7 +88,7 @@ def search_springer_by_keyword(keyword, start=1, year_range=None, literatureType
         return {"error": str(e)}
 
 
-def search_springer_by_doi(dois, start=1, year_range=None, literatureType=None, exclude=None):
+def search_springer_by_doi(dois, start=1, datefrom=None, dateto=None, literatureType=None, exclude=None):
     base_url = os.getenv('BASE_URL')
     params = {
         "q": " OR ".join(f"doi:{doi}" for doi in dois),
@@ -96,9 +96,9 @@ def search_springer_by_doi(dois, start=1, year_range=None, literatureType=None, 
         "api_key": os.getenv('SPRINGER_API_KEY'),
     }
 
-    if year_range:
-        params["date-facet-mode"] = "between"
-        params["date-facet"] = year_range
+    if datefrom and dateto:
+        params["datefrom"] = datefrom
+        params["dateto"] = dateto
 
     if exclude:
         for key, value in exclude.items():
@@ -116,7 +116,7 @@ def search_springer_by_doi(dois, start=1, year_range=None, literatureType=None, 
     except requests.exceptions.RequestException as e:
         return {"error": str(e)}
 
-def search_springer_by_isbn_issn(identifier_type, identifier, start=1, year_range=None, literatureType=None, exclude=None):
+def search_springer_by_isbn_issn(identifier_type, identifier, start=1, datefrom=None, dateto=None, literatureType=None, exclude=None):
     base_url = os.getenv('BASE_URL')
     params = {
         "q": identifier_type+':'+identifier,
@@ -124,9 +124,9 @@ def search_springer_by_isbn_issn(identifier_type, identifier, start=1, year_rang
         "api_key": os.getenv('SPRINGER_API_KEY'),
     }
 
-    if year_range:
-        params["date-facet-mode"] = "between"
-        params["date-facet"] = year_range
+    if datefrom and dateto:
+        params["datefrom"] = datefrom
+        params["dateto"] = dateto
 
     if exclude:
         for key, value in exclude.items():
