@@ -1,6 +1,0 @@
-
-for using on the fly adhoc certificates for https server setup
-pip install pyopenssl
-
-to the project configuration, to the script that runs application in parameters add flag
---cert=adhoc

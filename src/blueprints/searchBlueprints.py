@@ -57,7 +57,6 @@ def search_by_keyword(keyword):
 
     return jsonify(formatted_results)
 
-
 # search by digital object identifier/s, pass as a string separated with ,
 # http://127.0.0.1:5000/api/search/doi?dois=10.1007/978-3-319-07410-8_4,10.1038/s41598-017-17625-2
 

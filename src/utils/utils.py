@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 
 load_dotenv('../../.env')
 
-
 def search_springer(query, start=1, datefrom=None, dateto=None, literatureType=None, exclude=None):
     base_url = os.getenv('BASE_URL')
     params = {
