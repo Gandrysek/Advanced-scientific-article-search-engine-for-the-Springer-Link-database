@@ -1,6 +1,7 @@
 from flask import Blueprint, request, make_response
 export_blueprint = Blueprint('export', __name__)
 
+# TODO: check if export works
 @export_blueprint.route('/api/export_csv', methods=['POST'])
 def export_csv():
     data = request.json
