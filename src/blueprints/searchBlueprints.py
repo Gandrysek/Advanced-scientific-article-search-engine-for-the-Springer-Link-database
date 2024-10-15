@@ -6,6 +6,7 @@ search_blueprint = Blueprint('search', __name__)
 # boolean constraints queries will be build in frontend, general
 # search method can take a single param query and a multiple params query
 # http://127.0.0.1:5000/api/search?query=machine learning&start=2&type=Journal&exclude={"type":"Book"}
+
 @search_blueprint.route('/search', methods=['GET'])
 def search():
     query = request.args.get('query')

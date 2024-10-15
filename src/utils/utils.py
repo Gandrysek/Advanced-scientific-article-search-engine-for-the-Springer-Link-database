@@ -25,8 +25,6 @@ def search_springer(query, start=1, datefrom=None, dateto=None, literatureType=N
     if literatureType:
         url += f"&type:{literatureType}"
 
-    print(url)
-
     try:
         response = requests.get(url)
         response.raise_for_status()

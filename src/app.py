@@ -8,6 +8,7 @@ from flask_cors import CORS
 # TODO: add a config so when running on locally we use HTTPS, then on build we use sertifications and https
 # TODO: export blueprints
 # TODO: testing !!!!
+
 # set the current working directory to the app.py for the relative path usage
 os.chdir(os.path.dirname(__file__))
 load_dotenv('../.env')
