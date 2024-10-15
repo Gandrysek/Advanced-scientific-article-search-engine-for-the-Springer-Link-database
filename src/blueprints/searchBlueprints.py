@@ -33,6 +33,7 @@ def search():
 
     return jsonify(formatted_results)
 
+
 # search by keyword
 # http://127.0.0.1:5000/api/search/biology?type=Journal
 @search_blueprint.route('/search/<keyword>', methods=['GET'])

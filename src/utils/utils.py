@@ -32,6 +32,7 @@ def search_springer(query, start=1, datefrom=None, dateto=None, literatureType=N
     except requests.exceptions.RequestException as e:
         return {"error": str(e)}
 
+
 def format_search_results(data):
     results = []
     for item in data.get('records', []):

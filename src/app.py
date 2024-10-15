@@ -16,7 +16,6 @@ load_dotenv('../.env')
 app = Flask(__name__)
 CORS(app)
 
-
 if "SPRINGER_API_KEY" in os.environ:
     app.register_blueprint(search_blueprint, url_prefix='/api')
     app.register_blueprint(export_blueprint, url_prefix='/api')
